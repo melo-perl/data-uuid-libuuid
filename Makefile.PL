@@ -37,9 +37,11 @@ sub try_compiling {
 
     my @cc = ( $conf->{CC}, '-c', $conf->{CCFLAGS}, $conf->{INC} || '' );
 
-    if ( -e ( my $devnull = File::Spec->devnull ) ) {
-        push @cc, '-o' => $devnull; # precompiled headers are pretty big
-    }
+    ## Melo, 2023/08/14: recent versions of cc don't like -o /dev/null
+    ## Error given: fatal error: cannot write PCH file: required memory segment unavailable
+    # if ( -e ( my $devnull = File::Spec->devnull ) ) {
+    #    push @cc, '-o' => $devnull; # precompiled headers are pretty big
+    # }
 
     my $cmd = join " ", @cc, $file;
 

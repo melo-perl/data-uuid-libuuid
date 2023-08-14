@@ -1,3 +1,6 @@
+0.06_01 Mon Aug 14 18:11:01 UTC 2023
+    - remove errors related to cc and -o /dec/null
+
 0.05
     - non dev release
 
